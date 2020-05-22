@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JOptionPane;
 import menuprincipal.controlmenuprincipal;
 import menuprincipal.vistamenuprincipal;
 
@@ -23,13 +24,13 @@ import menuprincipal.vistamenuprincipal;
 public class controlretiro implements ActionListener {
 
     vistaretiro v;
-    ModeloBD bd;
+    ModeloBD baseDatos;
     private int usuario;
     private ArrayList<limitadorCaracteres> limitadores = new ArrayList<limitadorCaracteres>();
 
     public controlretiro(vistaretiro vis, ModeloBD bd, int usuario) {
         v = vis;
-        this.bd = bd;
+        this.baseDatos = bd;
         this.usuario = usuario;
 
         v.cerrarventanax.addActionListener(this);
@@ -66,7 +67,7 @@ public class controlretiro implements ActionListener {
         if (e.getSource() == v.regresarx) {
             v.dispose();
             vistamenuprincipal mainmenu = new vistamenuprincipal();
-            controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu, bd, usuario);
+            controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu, baseDatos, usuario);
         }
 
         if (e.getSource() == v.buttonx1) {
@@ -114,9 +115,11 @@ public class controlretiro implements ActionListener {
         }
 
         if (e.getSource() == v.aceptar) {
-            v.dispose();
-            confirmaVista confirmavis = new confirmaVista();
-            confirmaControl confirmac = new confirmaControl(confirmavis, bd, usuario);
+            //v.dispose();
+            //confirmaVista confirmavis = new confirmaVista();
+            //confirmaControl confirmac = new confirmaControl(confirmavis, baseDatos, usuario);
+            restarSaldo();
+            System.out.println("Transacción en proceso");
             /**
              * Incluir método para verificar el saldo del usuario
              */
@@ -127,6 +130,25 @@ public class controlretiro implements ActionListener {
     private void limiteCaracteres(vistaretiro v) {
         limitadores.add(new limitadorCaracteres(v.valorretiro, 10, 2));
 
+    }
+    
+    private void restarSaldo(){
+        
+        baseDatos.conectar();
+        
+        int valoractual = Integer.parseInt(baseDatos.consultarSaldo(usuario));
+        int valorretiro = Integer.parseInt(v.valorretiro.getText());
+        int valornuevo = valoractual-valorretiro;
+        if(valornuevo <= 0){
+            JOptionPane.showMessageDialog(null, "Saldo Insuficiente");
+        } else if(valorretiro > valoractual) {
+            JOptionPane.showMessageDialog(null, "Saldo Insuficiente");
+        } else {
+            baseDatos.actualizarSaldo(usuario, valornuevo);    
+        }
+        
+        baseDatos.cerrar();
+        
     }
 
 }

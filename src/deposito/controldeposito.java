@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import javax.swing.JOptionPane;
 import menuprincipal.controlmenuprincipal;
 import menuprincipal.vistamenuprincipal;
 import retiro.vistaretiro;
@@ -22,13 +23,15 @@ import retiro.vistaretiro;
 public class controldeposito implements ActionListener {
 
     vistadeposito v;
-    ModeloBD bd;
+    
+    ModeloBD baseDatos;
     private int usuario;
     private ArrayList<limitadorCaracteres> limitadores = new ArrayList<limitadorCaracteres>();
 
     public controldeposito(vistadeposito vis, ModeloBD bd, int usuario) {
         v = vis;
-        this.bd = bd;
+        
+        this.baseDatos = bd;
         this.usuario = usuario;
         
         v.cerrarventanax.addActionListener(this);
@@ -68,7 +71,7 @@ public class controldeposito implements ActionListener {
             v.dispose();
 
             vistamenuprincipal mainmenu = new vistamenuprincipal();
-            controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu, bd, usuario);
+            controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu, baseDatos, usuario);
 
         }
         
@@ -121,6 +124,8 @@ public class controldeposito implements ActionListener {
             /**
              * Incluir método para verificar el saldo del usuario
              */
+            sumarSaldo();
+            JOptionPane.showMessageDialog(null, "Transacción en proceso");
         }
 
     }
@@ -128,6 +133,24 @@ public class controldeposito implements ActionListener {
     private void limiteCaracteres(vistadeposito v) {
         limitadores.add(new limitadorCaracteres(v.valordeposito, 10, 2));
 
+    }
+    
+   
+    
+    private void sumarSaldo(){
+        
+        baseDatos.conectar();
+        
+        int valoractual = Integer.parseInt(baseDatos.consultarSaldo(usuario));
+        int valodeposito = Integer.parseInt(v.valordeposito.getText());
+        int valornuevo = valoractual+valodeposito;
+        
+        
+        baseDatos.actualizarSaldo(usuario, valornuevo);
+        
+        baseDatos.cerrar();
+        
+        
     }
     
 }
