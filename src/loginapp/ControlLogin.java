@@ -692,7 +692,7 @@ public class ControlLogin implements ActionListener {
                 }
                 baseDatos.cerrar();
             } catch (Exception exc) {
-                JOptionPane.showMessageDialog(null, "Manejo Errores Login", "Error", 2);
+                JOptionPane.showMessageDialog(null, "Error de Login", "Error", 2);
             }
         }
 

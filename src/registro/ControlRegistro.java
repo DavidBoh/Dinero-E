@@ -57,6 +57,7 @@ public class ControlRegistro implements ActionListener {
             bdRegistro.conectar();
             if (bdRegistro.getConnect() != null) {
                 ingresarUsuario(ventanaR, bdRegistro);
+                
                 bdRegistro.cerrar();
             }
         }
