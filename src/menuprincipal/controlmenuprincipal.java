@@ -92,7 +92,7 @@ public class controlmenuprincipal implements ActionListener {
             v.dispose();
             
             historialVista historialvis = new historialVista();
-            historialControl historialc = new historialControl(historialvis, baseDatos,usuario);
+            historialControl historialc = new historialControl(historialvis, baseDatos, usuario);
      
         }
         
