@@ -22,7 +22,7 @@ public class ModeloBD {
 
     private String url = "jdbc:mysql://127.0.0.1:3306/dineroe";
     private String username = "DineroE";
-    private String password = "Girugamesh1.";
+    private String password = "salve3587..";
     private Connection connect;
 
     public void conectar() {
