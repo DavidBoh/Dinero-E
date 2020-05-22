@@ -10,6 +10,8 @@ import aprender.controlaprender;
 import aprender.vistaaprender;
 import deposito.controldeposito;
 import deposito.vistadeposito;
+import historial.historialControl;
+import historial.historialVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -39,6 +41,7 @@ public class controlmenuprincipal implements ActionListener {
         v.retirarx.addActionListener(this);
         v.cerrarsesionx.addActionListener(this);
         v.aprende.addActionListener(this);
+        v.historial.addActionListener(this);
         consultarSaldo();
         
         v.setDefaultCloseOperation(EXIT_ON_CLOSE); 
@@ -83,6 +86,14 @@ public class controlmenuprincipal implements ActionListener {
             
             vistaaprender  aprendevis = new vistaaprender();
             controlaprender aprendec = new controlaprender(aprendevis,baseDatos,usuario);
+        }
+        
+        if(e.getSource() == v.historial){
+            v.dispose();
+            
+            historialVista historialvis = new historialVista();
+            historialControl historialc = new historialControl(historialvis, baseDatos,usuario);
+     
         }
         
     }

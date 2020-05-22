@@ -26,7 +26,8 @@ public class vistamenuprincipal extends JFrame {
     public JButton retirarx;
     public JButton cerrarsesionx;
     public JButton aprende;
-      
+    public JButton historial;
+            
     private JLabel fondo;
     public JLabel saldo;
     
@@ -83,6 +84,12 @@ public class vistamenuprincipal extends JFrame {
         aprende.setBorder(null);
         aprende.setCursor(new Cursor(HAND_CURSOR));  
         
+        historial = new JButton(new ImageIcon(getClass().getResource("/Imagenes/lupita_s.png")));
+        historial.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/lupita_s.png")));
+        historial.setContentAreaFilled(false);
+        historial.setBorder(null);
+        historial.setCursor(new Cursor(HAND_CURSOR)); 
+        
     }
     
     private void localizar(){
@@ -97,6 +104,8 @@ public class vistamenuprincipal extends JFrame {
         
         depositarx.setBounds(35,300,100,100);
         retirarx.setBounds(185,300,100,100);
+        
+        historial.setBounds(240,190,30,30);
         
         cerrarsesionx.setBounds(45,410,100,100);
         aprende.setBounds(175,410,100,100);
@@ -114,6 +123,9 @@ public class vistamenuprincipal extends JFrame {
         add(cerrarsesionx);
         add(aprende);
         add(saldo);
+        
+        add(historial);
+        
         add(fondo);
         
         
