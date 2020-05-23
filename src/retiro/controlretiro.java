@@ -116,10 +116,11 @@ public class controlretiro implements ActionListener {
 
         if (e.getSource() == v.aceptar) {
             //v.dispose();
+            
+            restarSaldo();
+            
             //confirmaVista confirmavis = new confirmaVista();
             //confirmaControl confirmac = new confirmaControl(confirmavis, baseDatos, usuario);
-            restarSaldo();
-            System.out.println("Transacción en proceso");
             /**
              * Incluir método para verificar el saldo del usuario
              */
@@ -134,20 +135,32 @@ public class controlretiro implements ActionListener {
     
     private void restarSaldo(){
         
-        baseDatos.conectar();
+        if(!v.valorretiro.getText().isEmpty()){
+            try{
+                baseDatos.conectar();
         
-        int valoractual = Integer.parseInt(baseDatos.consultarSaldo(usuario));
-        int valorretiro = Integer.parseInt(v.valorretiro.getText());
-        int valornuevo = valoractual-valorretiro;
-        if(valornuevo <= 0){
-            JOptionPane.showMessageDialog(null, "Saldo Insuficiente");
-        } else if(valorretiro > valoractual) {
-            JOptionPane.showMessageDialog(null, "Saldo Insuficiente");
+                int valoractual = Integer.parseInt(baseDatos.consultarSaldo(usuario));
+                int valorretiro = Integer.parseInt(v.valorretiro.getText());
+                int valornuevo = valoractual-valorretiro;
+                if(valornuevo <= 0){
+                    JOptionPane.showMessageDialog(null, "Saldo Insuficiente");
+                } else if(valorretiro > valoractual) {
+                    JOptionPane.showMessageDialog(null, "Saldo Insuficiente");
+                } else if (valorretiro > 5000000) {
+                    JOptionPane.showMessageDialog(null, "Saldo Inválido");
+                }else {
+                    baseDatos.actualizarSaldo(usuario, valornuevo);    
+                }
+        
+                baseDatos.cerrar();
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Ingrese Datos");
+            }
         } else {
-            baseDatos.actualizarSaldo(usuario, valornuevo);    
+                JOptionPane.showMessageDialog(null, "Ingrese Datos");
         }
         
-        baseDatos.cerrar();
+        
         
     }
 

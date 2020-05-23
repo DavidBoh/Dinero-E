@@ -125,7 +125,7 @@ public class controldeposito implements ActionListener {
              * Incluir método para verificar el saldo del usuario
              */
             sumarSaldo();
-            JOptionPane.showMessageDialog(null, "Transacción en proceso");
+            
         }
 
     }
@@ -139,16 +139,33 @@ public class controldeposito implements ActionListener {
     
     private void sumarSaldo(){
         
-        baseDatos.conectar();
+        if(!v.valordeposito.getText().isEmpty()){
+        	try {
+        	
+        		baseDatos.conectar();
         
-        int valoractual = Integer.parseInt(baseDatos.consultarSaldo(usuario));
-        int valodeposito = Integer.parseInt(v.valordeposito.getText());
-        int valornuevo = valoractual+valodeposito;
+        		int valoractual = Integer.parseInt(baseDatos.consultarSaldo(usuario));
+        		int valodeposito = Integer.parseInt(v.valordeposito.getText());
+        		int valornuevo = valoractual+valodeposito;
+        
+        		if(valodeposito > 5000000){
+            			JOptionPane.showMessageDialog(null, "Saldo Inválido");
+        		}else {
+        
+        			baseDatos.actualizarSaldo(usuario, valornuevo);
+        
+        		}
+        		baseDatos.cerrar();
+        	
+        	} catch (Exception e) {
+        		JOptionPane.showMessageDialog(null, "Ingrese Datos");
+        	}
+        
+        } else {
+        	JOptionPane.showMessageDialog(null, "Ingrese Datos");
+        }
         
         
-        baseDatos.actualizarSaldo(usuario, valornuevo);
-        
-        baseDatos.cerrar();
         
         
     }
