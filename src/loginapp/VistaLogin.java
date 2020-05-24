@@ -103,6 +103,7 @@ public class VistaLogin extends JFrame{
     public JButton buttonx123;
     public JButton mayus;
     public JButton minus;
+    
     public JButton usuarionuevo;
     public JButton restablecer;
     
