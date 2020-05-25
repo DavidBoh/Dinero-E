@@ -5,6 +5,7 @@
  */
 package retiro;
 
+import Hash.Sha;
 import Modelo.ModeloBD;
 import Modelo.limitadorCaracteres;
 
@@ -21,7 +22,8 @@ import menuprincipal.vistamenuprincipal;
  * @author herrboh
  */
 public class controlretiro implements ActionListener {
-
+    
+    private Sha seguridad = new Sha();
     vistaretiro v;
     ModeloBD baseDatos;
     private int usuario;
@@ -720,11 +722,9 @@ public class controlretiro implements ActionListener {
         }
         
         if (e.getSource() == v.buttonxok) {
-            
-            
-            restarSaldo();
-            
-            
+
+            validarContraseña();
+
         }
         
         /*Fin ventana confirmacion*/
@@ -817,6 +817,36 @@ public class controlretiro implements ActionListener {
     
     private void pasarValor(){
         v.valoraretirar_ventanaconfirmacion.setText(v.valorretiro.getText());
+    }
+    
+    private void validarContraseña(){
+        try {
+                char[] ar = v.confirmacontraseña.getPassword();
+                StringBuilder builder = new StringBuilder();
+                for (char s : ar) {
+                    builder.append(s);
+                }
+
+                String str = builder.toString();                                
+                String clave = seguridad.get_SHA_256_SecurePassword(str);                
+                
+                baseDatos.conectar();
+                if (baseDatos.ValidarContra(clave)) {
+                    
+                    restarSaldo();
+                    JOptionPane.showMessageDialog(null, "Operación terminada");
+                    v.dispose();
+                    vistamenuprincipal mainmenu = new vistamenuprincipal();
+                    controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu,baseDatos,usuario);
+                    System.out.println("conexion exitosa");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Contraseña invalida", "Error al verificar", 2);
+                }
+                baseDatos.cerrar();
+            } catch (Exception exc) {
+                JOptionPane.showMessageDialog(null, "Error", "Error", 2);
+            }
     }
 
 }

@@ -94,6 +94,28 @@ public class ModeloBD {
         return resultado;
     }
     
+    public boolean ValidarContra(String contrasena) {
+        boolean resultado = false;        
+        String campoDB;
+        ResultSet result;
+
+        try {
+            campoDB = "call verificarContrasena(?);";
+            CallableStatement st = connect.prepareCall(campoDB);
+            
+            st.setString(1, contrasena);
+            result = st.executeQuery();
+            while (result.next()) {
+                if (result.getString(1).equals(contrasena)) {                    
+                    resultado = true;
+                }
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error de Validación en la BD");
+        }
+        return resultado;
+    }
+    
     
     public int identificador(int usuario, String contrasena) {
         int resultado = 0;        

@@ -125,6 +125,10 @@ public class controldeposito implements ActionListener {
              * Incluir método para verificar el saldo del usuario
              */
             sumarSaldo();
+            JOptionPane.showMessageDialog(null, "Depósito exitoso");
+            v.dispose();
+            vistamenuprincipal mainmenu = new vistamenuprincipal();
+            controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu,baseDatos,usuario);
             
         }
 
