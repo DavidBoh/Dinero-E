@@ -51,7 +51,7 @@ public class vistamenuprincipal extends JFrame {
         fondo.setIcon(new ImageIcon(getClass().getResource("/Imagenes/MAINMENU.jpg")));
         
         saldo = new JLabel("saldo");  
-        saldo.setFont(new Font("Serif", Font.PLAIN, 20));         
+        saldo.setFont(new Font("Serif", Font.PLAIN, 15));         
         
         
         cerrarventanax = new JButton(new ImageIcon(getClass().getResource("/Imagenes/cerrar.png")));

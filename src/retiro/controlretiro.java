@@ -124,7 +124,7 @@ public class controlretiro implements ActionListener {
         v.buttonxok.addActionListener(this);
         
         
-        v.aceptar_ventanaconfirmacion.addActionListener(this);
+        
         /*Fin ventana confirmacion*/
 
         v.cerrarventanax.addActionListener(this);
@@ -198,45 +198,8 @@ public class controlretiro implements ActionListener {
         }
         
         if (e.getSource() == v.aceptar) {
-            /*Magic tricks*/
-            /*Desaparecer pantalla inicial*/
-            v.fondo.setVisible(false);
-            v.valorretiro.setVisible(false);
-            v.buttonx0_1.setVisible(false);
-            v.buttonx1_1.setVisible(false);
-            v.buttonx2_1.setVisible(false);
-            v.buttonx3_1.setVisible(false);
-            v.buttonx4_1.setVisible(false);
-            v.buttonx5_1.setVisible(false);
-            v.buttonx6_1.setVisible(false);
-            v.buttonx7_1.setVisible(false);
-            v.buttonx8_1.setVisible(false);
-            v.buttonx9_1.setVisible(false);
-            v.buttonxcancel_1.setVisible(false);
-            v.aceptar.setVisible(false);
-            /*Fin Desaparecer pantalla inicial*/
-            /* ----------------------------- */
-            /* Hacer aparecer la ventana de confirmacion */
-            v.fondo2.setVisible(true);
-            v.confirmacontraseña.setVisible(true);
-            v.buttonx0.setVisible(true);
-            v.buttonx1.setVisible(true);
-            v.buttonx2.setVisible(true);
-            v.buttonx3.setVisible(true);
-            v.buttonx4.setVisible(true);
-            v.buttonx5.setVisible(true);
-            v.buttonx6.setVisible(true);
-            v.buttonx7.setVisible(true);
-            v.buttonx8.setVisible(true);
-            v.buttonx9.setVisible(true);
-            v.buttonxABC.setVisible(true);
-            v.buttonxcancel.setVisible(true);
-            v.buttonxok.setVisible(true);
-            v.aceptar_ventanaconfirmacion.setVisible(true);
-            
-            /* Fin Hacer aparecer la ventana de confirmacion */
-            
-            
+                validacionAceptar();
+                pasarValor();
         }
         
         /*Fin ventana inicial*/
@@ -777,7 +740,7 @@ public class controlretiro implements ActionListener {
     
     private void restarSaldo(){
         
-        if(!v.valorretiro.getText().isEmpty()){
+        if(!v.confirmacontraseña.getText().isEmpty()){
             try{
                 baseDatos.conectar();
         
@@ -801,9 +764,59 @@ public class controlretiro implements ActionListener {
         } else {
                 JOptionPane.showMessageDialog(null, "Ingrese Datos");
         }
-        
-        
-        
+
+    }
+    
+    private void validacionAceptar(){
+        if(!v.valorretiro.getText().isEmpty()){
+            try{
+                /*Magic tricks*/
+                /*Desaparecer pantalla inicial*/
+                v.fondo.setVisible(false);
+                v.valorretiro.setVisible(false);
+                v.buttonx0_1.setVisible(false);
+                v.buttonx1_1.setVisible(false);
+                v.buttonx2_1.setVisible(false);
+                v.buttonx3_1.setVisible(false);
+                v.buttonx4_1.setVisible(false);
+                v.buttonx5_1.setVisible(false);
+                v.buttonx6_1.setVisible(false);
+                v.buttonx7_1.setVisible(false);
+                v.buttonx8_1.setVisible(false);
+                v.buttonx9_1.setVisible(false);
+                v.buttonxcancel_1.setVisible(false);
+                v.aceptar.setVisible(false);
+                /*Fin Desaparecer pantalla inicial*/
+                /* ----------------------------- */
+                /* Hacer aparecer la ventana de confirmacion */
+                v.fondo2.setVisible(true);
+                v.confirmacontraseña.setVisible(true);
+                v.buttonx0.setVisible(true);
+                v.buttonx1.setVisible(true);
+                v.buttonx2.setVisible(true);
+                v.buttonx3.setVisible(true);
+                v.buttonx4.setVisible(true);
+                v.buttonx5.setVisible(true);
+                v.buttonx6.setVisible(true);
+                v.buttonx7.setVisible(true);
+                v.buttonx8.setVisible(true);
+                v.buttonx9.setVisible(true);
+                v.buttonxABC.setVisible(true);
+                v.buttonxcancel.setVisible(true);
+                v.buttonxok.setVisible(true);
+                v.valoraretirar_ventanaconfirmacion.setVisible(true);
+           
+            
+            /* Fin Hacer aparecer la ventana de confirmacion */
+            
+            } catch (Exception e){
+                   JOptionPane.showMessageDialog(null, "Ingrese Datos");
+            }
+        }
+    }
+    
+    private void pasarValor(){
+        v.valoraretirar_ventanaconfirmacion.setText(v.valorretiro.getText());
     }
 
 }

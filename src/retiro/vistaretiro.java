@@ -7,6 +7,7 @@ package retiro;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import static java.awt.Frame.HAND_CURSOR;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -37,7 +38,7 @@ public class vistaretiro extends JFrame {
     public JButton buttonxcancel_1;
     public JTextField valorretiro;
     private TextPrompt valorretiroT;
-    public JButton aceptar_ventanaconfirmacion;
+    
     public JLabel fondo;
    
     /*Fin ventana inicial */
@@ -218,11 +219,7 @@ public class vistaretiro extends JFrame {
         buttonxcancel_1.setBorder(null);
         buttonxcancel_1.setCursor(new Cursor(HAND_CURSOR));
         
-        aceptar_ventanaconfirmacion = new JButton(new ImageIcon(getClass().getResource("/Imagenes/boton.png")));
-        aceptar_ventanaconfirmacion.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/boton_g.png")));
-        aceptar_ventanaconfirmacion.setContentAreaFilled(false);
-        aceptar_ventanaconfirmacion.setBorder(null);
-        aceptar_ventanaconfirmacion.setCursor(new Cursor(HAND_CURSOR));
+      
         
         aceptar = new JButton(new ImageIcon(getClass().getResource("/Imagenes/boton.png")));
         aceptar.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/boton_g.png")));
@@ -250,13 +247,14 @@ public class vistaretiro extends JFrame {
         fondo2.setBackground(new Color(72, 181, 232));
         fondo2.setVisible(false);
         
-        valoraretirar_ventanaconfirmacion = new JLabel(" ");
+        valoraretirar_ventanaconfirmacion = new JLabel(" xxx ");
         valoraretirar_ventanaconfirmacion.setVisible(false);
+        valoraretirar_ventanaconfirmacion.setFont(new Font("Serif", Font.PLAIN, 15)); 
         
         confirmacontraseña = new JPasswordField();
         confirmacontraseña.setOpaque(false);
         confirmacontraseña.setBorder(null);
-        confirmacontraseñaT = new TextPrompt("Monto a retirar", confirmacontraseña); 
+        confirmacontraseñaT = new TextPrompt("Contraseña", confirmacontraseña); 
         confirmacontraseña.setEditable(false);
         confirmacontraseña.setFocusable(false);
         confirmacontraseña.setVisible(false);
@@ -829,8 +827,8 @@ public class vistaretiro extends JFrame {
         
         fondo2.setBounds(0,0,310,546);
         
-        valoraretirar_ventanaconfirmacion.setBounds(250,280,100,100);
-        aceptar_ventanaconfirmacion.setBounds(129, 465, 47, 47);
+        valoraretirar_ventanaconfirmacion.setBounds(78,165,100,100);
+    
         confirmacontraseña.setBounds(90,215,100,100);
         /* Fin ventana confirmar*/
 
@@ -861,8 +859,7 @@ public class vistaretiro extends JFrame {
         /* Fin ventana inicial*/
         /* -------------------- */
         /* Inicio ventana confirmar*/
-        add(aceptar_ventanaconfirmacion);
-        aceptar_ventanaconfirmacion.setVisible(false);
+       
         add(buttonx1);
         buttonx1.setVisible(false);    
         add(buttonx2);
