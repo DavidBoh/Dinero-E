@@ -810,8 +810,10 @@ public class controlretiro implements ActionListener {
             /* Fin Hacer aparecer la ventana de confirmacion */
             
             } catch (Exception e){
-                   JOptionPane.showMessageDialog(null, "Ingrese Datos");
+                JOptionPane.showMessageDialog(null, "Error");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese el monto");
         }
     }
     
@@ -834,7 +836,7 @@ public class controlretiro implements ActionListener {
                 if (baseDatos.ValidarContra(clave)) {
                     
                     restarSaldo();
-                    JOptionPane.showMessageDialog(null, "Operación terminada");
+                    JOptionPane.showMessageDialog(null, "Operación terminada con éxito");
                     v.dispose();
                     vistamenuprincipal mainmenu = new vistamenuprincipal();
                     controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu,baseDatos,usuario);

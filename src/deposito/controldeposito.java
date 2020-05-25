@@ -125,7 +125,7 @@ public class controldeposito implements ActionListener {
              * Incluir método para verificar el saldo del usuario
              */
             sumarSaldo();
-            JOptionPane.showMessageDialog(null, "Depósito exitoso");
+            JOptionPane.showMessageDialog(null, "Operación terminada con éxito");
             v.dispose();
             vistamenuprincipal mainmenu = new vistamenuprincipal();
             controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu,baseDatos,usuario);
@@ -162,11 +162,11 @@ public class controldeposito implements ActionListener {
         		baseDatos.cerrar();
         	
         	} catch (Exception e) {
-        		JOptionPane.showMessageDialog(null, "Ingrese Datos");
+        		JOptionPane.showMessageDialog(null, "Error");
         	}
         
         } else {
-        	JOptionPane.showMessageDialog(null, "Ingrese Datos");
+        	JOptionPane.showMessageDialog(null, "Ingrese el monto");
         }
         
         
