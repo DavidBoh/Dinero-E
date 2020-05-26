@@ -125,10 +125,9 @@ public class controldeposito implements ActionListener {
              * Incluir método para verificar el saldo del usuario
              */
             sumarSaldo();
-            JOptionPane.showMessageDialog(null, "Operación terminada con éxito");
-            v.dispose();
-            vistamenuprincipal mainmenu = new vistamenuprincipal();
-            controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu,baseDatos,usuario);
+            
+            
+            
             
         }
 
@@ -144,29 +143,30 @@ public class controldeposito implements ActionListener {
     private void sumarSaldo(){
         
         if(!v.valordeposito.getText().isEmpty()){
-        	try {
-        	
-        		baseDatos.conectar();
+            try {
+                    baseDatos.conectar();
         
-        		int valoractual = Integer.parseInt(baseDatos.consultarSaldo(usuario));
-        		int valodeposito = Integer.parseInt(v.valordeposito.getText());
-        		int valornuevo = valoractual+valodeposito;
-        
-        		if(valodeposito > 5000000){
-            			JOptionPane.showMessageDialog(null, "Saldo Inválido");
-        		}else {
-        
-        			baseDatos.actualizarSaldo(usuario, valornuevo);
-        
-        		}
+                    int valoractual = Integer.parseInt(baseDatos.consultarSaldo(usuario));
+                    int valodeposito = Integer.parseInt(v.valordeposito.getText());
+                    int valornuevo = valoractual+valodeposito;
+                    if(valodeposito > 5000000){
+            		JOptionPane.showMessageDialog(null, "Saldo debe ser menor a 5 millones");
+                    }else {
+                        
+                        baseDatos.actualizarSaldo(usuario, valornuevo);
+                        JOptionPane.showMessageDialog(null, "Operación terminada con éxito");
+                        v.dispose();
+                        vistamenuprincipal mainmenu = new vistamenuprincipal();
+                        controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu,baseDatos,usuario);
+                    }
         		baseDatos.cerrar();
         	
         	} catch (Exception e) {
-        		JOptionPane.showMessageDialog(null, "Error");
+                    JOptionPane.showMessageDialog(null, "Error");
         	}
         
         } else {
-        	JOptionPane.showMessageDialog(null, "Ingrese el monto");
+            JOptionPane.showMessageDialog(null, "Ingrese el monto");
         }
         
         

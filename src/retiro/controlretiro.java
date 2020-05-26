@@ -762,7 +762,7 @@ public class controlretiro implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Ingrese Datos");
             }
         } else {
-                JOptionPane.showMessageDialog(null, "Ingrese Datos");
+            JOptionPane.showMessageDialog(null, "Ingrese Datos");
         }
 
     }
