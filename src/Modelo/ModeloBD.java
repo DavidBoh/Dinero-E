@@ -230,4 +230,25 @@ public class ModeloBD {
         return resultado;
     }
 
+    public String actualizarSaldo(int usuario, int saldo) {
+        String resultado = "0";
+        String campoDB;
+        ResultSet result;
+        
+        try{
+            campoDB = "call actualizarSaldo(?,?);";
+            CallableStatement st = connect.prepareCall(campoDB);
+            st.setInt(1, usuario);   
+            st.setInt(2, saldo);
+            result = st.executeQuery();
+            while (result.next()) {                
+                    resultado = result.getString(1);                
+            }
+            
+        } catch (SQLException  ex){
+            System.err.println("Error de Validación en la BD");
+        }
+        return resultado;       
+    }
+    
 }
