@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -33,12 +35,15 @@ public class ControlLogin implements ActionListener {
     private ModeloBD baseDatos;
     private Sha seguridad = new Sha();
     private ArrayList<limitadorCaracteres> limitadores = new ArrayList<limitadorCaracteres>();
+    private int limitadorContra = 0;
+    private char echoPass;
+    private boolean banderaPass = true;
 
     public ControlLogin(ModeloBD baseDatos, VistaLogin vis) {
 
         this.v = vis;
         this.baseDatos = baseDatos;
-
+        this.echoPass = v.pContra.getEchoChar();
         v.buttonx1.addActionListener(this);
         v.buttonx2.addActionListener(this);
         v.buttonx3.addActionListener(this);
@@ -52,7 +57,7 @@ public class ControlLogin implements ActionListener {
 
         v.buttonxok.addActionListener(this);
         v.buttonxcancel.addActionListener(this);
-
+        v.verContraseña.addActionListener(this);
         v.botonCerrar.addActionListener(this);
 
         v.buttonxA.addActionListener(this);
@@ -120,7 +125,7 @@ public class ControlLogin implements ActionListener {
         v.restablecer.addActionListener(this);
 
         limiteCaracteres(v);
-
+        limiteContrasena();
     }
 
     @Override
@@ -235,6 +240,16 @@ public class ControlLogin implements ActionListener {
             v.minus.setVisible(true);
             v.mayus.setVisible(false);
 
+        }
+        
+        if (e.getSource() == v.verContraseña) {
+            if (banderaPass) { 
+                v.pContra.setEchoChar((char) 0);
+                banderaPass = false;
+            } else {
+                v.pContra.setEchoChar(echoPass);
+                banderaPass = true;
+            }
         }
 
         if (e.getSource() == v.restablecer) {
@@ -399,275 +414,270 @@ public class ControlLogin implements ActionListener {
             System.exit(0);
         }
 
-        if (e.getSource() == v.buttonx1) {
+        if (e.getSource() == v.buttonx1 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "1");
         }
 
-        if (e.getSource() == v.buttonx2) {
+        if (e.getSource() == v.buttonx2 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "2");
         }
 
-        if (e.getSource() == v.buttonx3) {
+        if (e.getSource() == v.buttonx3 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "3");
         }
 
-        if (e.getSource() == v.buttonx4) {
+        if (e.getSource() == v.buttonx4 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "4");
         }
 
-        if (e.getSource() == v.buttonx5) {
+        if (e.getSource() == v.buttonx5 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "5");
         }
 
-        if (e.getSource() == v.buttonx6) {
+        if (e.getSource() == v.buttonx6 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "6");
         }
 
-        if (e.getSource() == v.buttonx7) {
+        if (e.getSource() == v.buttonx7 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "7");
         }
 
-        if (e.getSource() == v.buttonx8) {
+        if (e.getSource() == v.buttonx8 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "8");
         }
 
-        if (e.getSource() == v.buttonx9) {
+        if (e.getSource() == v.buttonx9 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "9");
         }
 
-        if (e.getSource() == v.buttonx0) {
+        if (e.getSource() == v.buttonx0 && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "0");
         }
 
         if (e.getSource() == v.buttonxcancel) {
             v.pContra.setText(null);
+            limitadorContra = 0;
         }
 
-        if (e.getSource() == v.buttonxa) {
+        if (e.getSource() == v.buttonxa && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "a");
         }
 
-        if (e.getSource() == v.buttonxb) {
+        if (e.getSource() == v.buttonxb && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "b");
         }
 
-        if (e.getSource() == v.buttonxc) {
+        if (e.getSource() == v.buttonxc && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "c");
         }
 
-        if (e.getSource() == v.buttonxd) {
+        if (e.getSource() == v.buttonxd && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "d");
         }
 
-        if (e.getSource() == v.buttonxe) {
+        if (e.getSource() == v.buttonxe && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "e");
         }
 
-        if (e.getSource() == v.buttonxf) {
+        if (e.getSource() == v.buttonxf && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "f");
         }
 
-        if (e.getSource() == v.buttonxg) {
+        if (e.getSource() == v.buttonxg && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "g");
         }
 
-        if (e.getSource() == v.buttonxh) {
+        if (e.getSource() == v.buttonxh && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "h");
         }
 
-        if (e.getSource() == v.buttonxi) {
+        if (e.getSource() == v.buttonxi && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "i");
         }
 
-        if (e.getSource() == v.buttonxj) {
+        if (e.getSource() == v.buttonxj && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "j");
         }
 
-        if (e.getSource() == v.buttonxk) {
+        if (e.getSource() == v.buttonxk && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "k");
         }
 
-        if (e.getSource() == v.buttonxl) {
+        if (e.getSource() == v.buttonxl && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "l");
         }
 
-        if (e.getSource() == v.buttonxm) {
+        if (e.getSource() == v.buttonxm && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "m");
         }
 
-        if (e.getSource() == v.buttonxn) {
+        if (e.getSource() == v.buttonxn && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "n");
         }
 
-        if (e.getSource() == v.buttonxñ) {
+        if (e.getSource() == v.buttonxñ && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "ñ");
         }
 
-        if (e.getSource() == v.buttonxo) {
+        if (e.getSource() == v.buttonxo && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "o");
         }
 
-        if (e.getSource() == v.buttonxp) {
+        if (e.getSource() == v.buttonxp && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "p");
         }
 
-        if (e.getSource() == v.buttonxq) {
+        if (e.getSource() == v.buttonxq && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "q");
         }
 
-        if (e.getSource() == v.buttonxr) {
+        if (e.getSource() == v.buttonxr && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "r");
         }
 
-        if (e.getSource() == v.buttonxs) {
+        if (e.getSource() == v.buttonxs && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "s");
         }
 
-        if (e.getSource() == v.buttonxt) {
+        if (e.getSource() == v.buttonxt && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "t");
         }
 
-        if (e.getSource() == v.buttonxu) {
+        if (e.getSource() == v.buttonxu && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "u");
         }
 
-        if (e.getSource() == v.buttonxv) {
+        if (e.getSource() == v.buttonxv && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "v");
         }
 
-        if (e.getSource() == v.buttonxw) {
+        if (e.getSource() == v.buttonxw && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "w");
         }
 
-        if (e.getSource() == v.buttonxx) {
+        if (e.getSource() == v.buttonxx && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "x");
         }
 
-        if (e.getSource() == v.buttonxy) {
+        if (e.getSource() == v.buttonxy && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "y");
         }
 
-        if (e.getSource() == v.buttonxz) {
+        if (e.getSource() == v.buttonxz && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "z");
         }
 
-        if (e.getSource() == v.buttonxA) {
+        if (e.getSource() == v.buttonxA && limitadorContra < 15) {
             v.pContra.setText(v.pContra.getText() + "A");
         }
 
-        if (e.getSource() == v.buttonxB) {
+        if (e.getSource() == v.buttonxB && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "B");
         }
-        if (e.getSource() == v.buttonxC) {
+        if (e.getSource() == v.buttonxC && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "C");
         }
-        if (e.getSource() == v.buttonxD) {
+        if (e.getSource() == v.buttonxD && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "D");
         }
-        if (e.getSource() == v.buttonxE) {
+        if (e.getSource() == v.buttonxE && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "E");
         }
-        if (e.getSource() == v.buttonxF) {
+        if (e.getSource() == v.buttonxF && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "F");
         }
-        if (e.getSource() == v.buttonxG) {
+        if (e.getSource() == v.buttonxG && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "G");
         }
-        if (e.getSource() == v.buttonxH) {
+        if (e.getSource() == v.buttonxH && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "H");
         }
-        if (e.getSource() == v.buttonxI) {
+        if (e.getSource() == v.buttonxI && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "I");
         }
-        if (e.getSource() == v.buttonxJ) {
+        if (e.getSource() == v.buttonxJ && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "J");
         }
-        if (e.getSource() == v.buttonxK) {
+        if (e.getSource() == v.buttonxK && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "K");
         }
-        if (e.getSource() == v.buttonxL) {
+        if (e.getSource() == v.buttonxL && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "L");
         }
-        if (e.getSource() == v.buttonxM) {
+        if (e.getSource() == v.buttonxM && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "M");
         }
-        if (e.getSource() == v.buttonxN) {
+        if (e.getSource() == v.buttonxN && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "N");
         }
-        if (e.getSource() == v.buttonxÑ) {
+        if (e.getSource() == v.buttonxÑ && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "Ñ");
         }
-        if (e.getSource() == v.buttonxO) {
+        if (e.getSource() == v.buttonxO && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "O");
         }
-        if (e.getSource() == v.buttonxP) {
+        if (e.getSource() == v.buttonxP && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "P");
         }
-        if (e.getSource() == v.buttonxQ) {
+        if (e.getSource() == v.buttonxQ && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "Q");
         }
-        if (e.getSource() == v.buttonxR) {
+        if (e.getSource() == v.buttonxR && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "R");
         }
-        if (e.getSource() == v.buttonxS) {
+        if (e.getSource() == v.buttonxS && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "S");
         }
-        if (e.getSource() == v.buttonxT) {
+        if (e.getSource() == v.buttonxT && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "T");
         }
-        if (e.getSource() == v.buttonxU) {
+        if (e.getSource() == v.buttonxU && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "U");
         }
-        if (e.getSource() == v.buttonxV) {
+        if (e.getSource() == v.buttonxV && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "V");
         }
-        if (e.getSource() == v.buttonxW) {
+        if (e.getSource() == v.buttonxW && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "W");
         }
-        if (e.getSource() == v.buttonxX) {
+        if (e.getSource() == v.buttonxX && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "X");
         }
-        if (e.getSource() == v.buttonxY) {
+        if (e.getSource() == v.buttonxY && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "Y");
         }
-        if (e.getSource() == v.buttonxZ) {
+        if (e.getSource() == v.buttonxZ && limitadorContra < 15) {
 
             v.pContra.setText(v.pContra.getText() + "Z");
         }
-
+        
         if (e.getSource() == v.buttonxok) {
 
-            /*st = ModeloLogin.getConnection().prepareStatement(query);
-            
-            st.setString(1, Identificacion);
-            st.setString(2, Contraseña);
-            
-            rs = st.executeQuery();*/
             try {
                 char[] ar = v.pContra.getPassword();
                 StringBuilder builder = new StringBuilder();
@@ -675,8 +685,8 @@ public class ControlLogin implements ActionListener {
                     builder.append(s);
                 }
 
-                String str = builder.toString();                                
-                String clave = seguridad.get_SHA_256_SecurePassword(str);                
+                String str = builder.toString();
+                String clave = seguridad.get_SHA_256_SecurePassword(str);
                 int identificacion = Integer.parseInt(v.tIdentificacion.getText());
                 baseDatos.conectar();
                 if (baseDatos.ValidarU(identificacion, clave)) {
@@ -684,7 +694,7 @@ public class ControlLogin implements ActionListener {
                     v.dispose();
                     int usuario = baseDatos.identificador(identificacion, clave);
                     vistamenuprincipal mainmenu = new vistamenuprincipal();
-                    controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu,baseDatos,usuario);
+                    controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu, baseDatos, usuario);
                     System.out.println("conexion exitosa");
 
                 } else {
@@ -692,15 +702,33 @@ public class ControlLogin implements ActionListener {
                 }
                 baseDatos.cerrar();
             } catch (Exception exc) {
-                JOptionPane.showMessageDialog(null, "Error de Login", "Error", 2);
+                JOptionPane.showMessageDialog(null, "Manejo Errores Login", "Error", 2);
             }
         }
-
     }
 
     private void limiteCaracteres(VistaLogin v) {
         limitadores.add(new limitadorCaracteres(v.tIdentificacion, 10,2));
         limitadores.add(new limitadorCaracteres(v.pContra, 15,4));
+    }
+    
+     private void limiteContrasena() {
+        v.pContra.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                if (e.getDocument().getLength() <= 15) {
+                    limitadorContra++;
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+            }
+        });
     }
 
 }

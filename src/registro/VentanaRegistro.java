@@ -25,6 +25,7 @@ public class VentanaRegistro extends JFrame {
 
     private String tipoIdentificacion[] = {"CC", "CE", "PA","RC","TI"};
     private JLabel fondo;
+    public JLabel barra;
     public JTextField tNombre, tApellido, tIdentificacion, tCorreo;
     private TextPrompt nombre, apellido, identificacion, correo, contraseña;    
     public JPasswordField pContra;
@@ -32,7 +33,7 @@ public class VentanaRegistro extends JFrame {
     public JButton botonRegistrar, botonCerrar;    
     public JComboBox JCombotipoIdentificacion;
 
-    public JButton regresarx;
+    public JButton regresarx, verContraseña;
     
     public VentanaRegistro() {
 
@@ -56,6 +57,9 @@ public class VentanaRegistro extends JFrame {
         fondo.setOpaque(true);
         fondo.setIcon(new ImageIcon(getClass().getResource("/Imagenes/RegistrarUsuario.jpeg")));
         fondo.setBackground(new Color(72, 181, 232));
+        
+        barra = new JLabel();
+        barra.setOpaque(false);
 
         tNombre = new JTextField();
         tNombre.setBackground(tFondo);
@@ -114,6 +118,12 @@ public class VentanaRegistro extends JFrame {
         regresarx.setContentAreaFilled(false);
         regresarx.setBorder(null);
         regresarx.setCursor(new Cursor(HAND_CURSOR));
+        
+        verContraseña = new JButton(new ImageIcon(getClass().getResource("/Imagenes/ojo.png")));
+        verContraseña.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/ojo_g.png")));
+        verContraseña.setContentAreaFilled(false);
+        verContraseña.setBorder(null);
+        verContraseña.setCursor(new Cursor(HAND_CURSOR));
     }
 
     private void localizar(){
@@ -125,14 +135,15 @@ public class VentanaRegistro extends JFrame {
         tApellido.setBounds(65, 276, 180, 30);        
         tCorreo.setBounds(65, 372, 180, 30);
         pContra.setBounds(65, 420, 180, 30);
-        
+        barra.setBounds(63,437,180,30); 
         tIdentificacion.setBounds(120, 324, 125, 30);
         JCombotipoIdentificacion.setBounds(65,324,46,30);
         
         regresarx.setBounds(20,20,47,47);
-
+        verContraseña.setBounds(223, 423, 28, 28);
         botonRegistrar.setBounds(129, 465, 47, 47);
         botonCerrar.setBounds(270, 5, 25, 25);
+        
     }
 
     private void agregar() {
@@ -145,10 +156,10 @@ public class VentanaRegistro extends JFrame {
         add(tIdentificacion);
         add(regresarx);
         add(pContra);
-
+        add(barra);
         add(botonRegistrar);
         add(botonCerrar);
-
+        add(verContraseña);
         add(fondo);
 
     }

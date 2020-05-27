@@ -25,6 +25,7 @@ public class ControlRegistro implements ActionListener {
 
     private VentanaRegistro ventanaR;
     private ModeloBD bdRegistro;
+    
     private Sha seguridad = new Sha();
     private ArrayList<limitadorCaracteres> limitadores = new ArrayList<limitadorCaracteres>();
 

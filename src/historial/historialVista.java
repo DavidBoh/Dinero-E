@@ -14,120 +14,97 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 /**
  *
- * @author herrboh
+ * @author Christian
  */
 public class historialVista extends JFrame {
-    
+
     public JButton cerrarventanax;
-   
+
     public JButton regresarx;
-    
+
     public JLabel fondo;
-    
+
+    DefaultTableModel modelo; 
     public String[] columnNames = {"Fecha",
-                        "Transaccion",
-                        "Valor", "Anterior $", "Nuevo $"};
-    
-    Object[][] data = {
-       
-        
-    };
-    
+        "Transaccion",
+        "Valor", "Anterior $", "Nuevo $"};
+
+    String[][] data = {};
+
     public TableColumn column = null;
-    
+
     public JTable table;
-    
+
     public JScrollPane scrollPane;
-    
-  
-    
-    public historialVista(){
-        
-        setSize(310,546);
+
+    public historialVista() {
+
+        setSize(310, 546);
         setUndecorated(true);
         iniciar();
         localizar();
-        agregar();       
+        agregar();
         setLocationRelativeTo(null);
         setVisible(true);
         setDefaultCloseOperation(3);
-        
-        
-        
+
     }
-    
-    private void iniciar(){
-        
+
+    private void iniciar() {
+
         fondo = new JLabel();
         fondo.setOpaque(true);
         fondo.setIcon(new ImageIcon(getClass().getResource("/Imagenes/NULL.jpg")));
         fondo.setBackground(new Color(72, 181, 232));
-        
+
         cerrarventanax = new JButton(new ImageIcon(getClass().getResource("/Imagenes/cerrar.png")));
         cerrarventanax.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/cerrar_g.png")));
         cerrarventanax.setContentAreaFilled(false);
         cerrarventanax.setBorder(null);
         cerrarventanax.setCursor(new Cursor(HAND_CURSOR));
-               
+
         regresarx = new JButton(new ImageIcon(getClass().getResource("/Imagenes/goback.png")));
         regresarx.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/goback_g.png")));
         regresarx.setContentAreaFilled(false);
         regresarx.setBorder(null);
         regresarx.setCursor(new Cursor(HAND_CURSOR));
-        
-        
-        
-        table = new JTable(data,columnNames);
-      
+
+        modelo = new DefaultTableModel(data, columnNames);
+        table = new JTable();
+        table.setModel(modelo);
+
         scrollPane = new JScrollPane(table);
-        
+
         table.setFillsViewportHeight(true);
-        
-        
-        
-       
-        
-        
-      
-        
-        
-        
-          
-        
+
     }
-    
-  
-    
-    private void localizar(){
-        
+
+    private void localizar() {
+
         setLayout(null);
-        
-        fondo.setBounds(0,0,310,546);
-        
+
+        fondo.setBounds(0, 0, 310, 546);
+
         cerrarventanax.setBounds(270, 10, 25, 25);
-        
-        
-        scrollPane.setBounds(20,130,268,260);
-        
-        regresarx.setBounds(20,20,47,47);
-        
-       
-        
-        
+
+        scrollPane.setBounds(20, 130, 268, 260);
+
+        regresarx.setBounds(20, 20, 47, 47);
+
     }
-    
-    private void agregar(){
-        
+
+    private void agregar() {
+
         add(cerrarventanax);
         add(regresarx);
         add(scrollPane);
-        
+
         add(fondo);//siempre añadirlo al final
-       
+
     }
-    
 }

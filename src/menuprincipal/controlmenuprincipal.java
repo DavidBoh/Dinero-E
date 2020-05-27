@@ -41,7 +41,8 @@ public class controlmenuprincipal implements ActionListener {
         v.retirarx.addActionListener(this);
         v.cerrarsesionx.addActionListener(this);
         v.aprende.addActionListener(this);
-        v.historial.addActionListener(this);
+        v.consultarHistorial.addActionListener(this);
+        
         consultarSaldo();
         
         v.setDefaultCloseOperation(EXIT_ON_CLOSE); 
@@ -88,7 +89,7 @@ public class controlmenuprincipal implements ActionListener {
             controlaprender aprendec = new controlaprender(aprendevis,baseDatos,usuario);
         }
         
-        if(e.getSource() == v.historial){
+        if(e.getSource() == v.consultarHistorial){
             v.dispose();
             
             historialVista historialvis = new historialVista();

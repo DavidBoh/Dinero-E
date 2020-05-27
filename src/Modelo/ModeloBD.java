@@ -10,9 +10,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Christian
@@ -216,6 +226,30 @@ public class ModeloBD {
             System.err.println("Error de Validación en la BD");
         }
         return resultado;       
+    }
+    
+    public ArrayList consultarHistorial(int usuario) {
+        String campoDB;
+        ResultSet result;
+        ArrayList<String> datos = new ArrayList<>();        
+        try {
+            campoDB = "call consultarMovimientos(?);";
+            CallableStatement st = connect.prepareCall(campoDB);
+            st.setInt(1, usuario);
+            result = st.executeQuery();
+            while (result.next()) {               
+                datos.add(result.getString(1));
+                datos.add(result.getString(2));
+                datos.add(result.getString(3));
+                datos.add(result.getString(4));
+                datos.add(result.getString(5));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error de Validación en la BD");
+        } catch (Exception e) {
+            System.err.println("Error de Validación en la BD, EBD2");
+        }
+        return datos;
     }
     
     

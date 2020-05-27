@@ -106,7 +106,7 @@ public class VistaLogin extends JFrame{
     
     public JButton usuarionuevo;
     public JButton restablecer;
-    
+    public JButton verContraseña;
     public JButton botonCerrar;
     private Color colorFuente, tFondo;
     private JLabel fondo;
@@ -368,6 +368,12 @@ public class VistaLogin extends JFrame{
         buttonxp.setBorder(null);
         buttonxp.setCursor(new Cursor(HAND_CURSOR));
         
+        verContraseña = new JButton(new ImageIcon(getClass().getResource("/Imagenes/ojo.png")));
+        verContraseña.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/ojo_g.png")));
+        verContraseña.setContentAreaFilled(false);
+        verContraseña.setBorder(null);
+        verContraseña.setCursor(new Cursor(HAND_CURSOR));
+        
         buttonxq = new JButton(new ImageIcon(getClass().getResource("/Imagenes/qsmall.png")));
         buttonxq.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/qbig.png")));
         buttonxq.setContentAreaFilled(false);
@@ -621,7 +627,7 @@ public class VistaLogin extends JFrame{
         pContra.setBounds(118, 275, 125, 30);
         
         tIdentificacion.setBounds(115, 226, 125, 30);
-
+        verContraseña.setBounds(60, 278, 28, 28);
         botonCerrar.setBounds(270, 10, 25, 25);
         
         buttonx1.setBounds(90,320,40,40);
@@ -726,7 +732,7 @@ public class VistaLogin extends JFrame{
         add(usuarionuevo);
         add(pContra);
         add(restablecer);
- 
+        add(verContraseña);
         add(botonCerrar);
         add(buttonx1);
         add(buttonx2);
