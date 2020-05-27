@@ -34,8 +34,8 @@ public class ModeloBD {
     private String username = "DineroE";
     private String password = "salve3587..";
     private Connection connect;
-
-    public void conectar() {
+    
+     public void conectar() {
         try {
             connect = DriverManager.getConnection(url, username, password);
             if (connect != null) {
@@ -83,7 +83,7 @@ public class ModeloBD {
     }
 
     public boolean ValidarU(int usuario, String contrasena) {
-        boolean resultado = false;        
+        boolean resultado = false;
         String campoDB;
         ResultSet result;
 
@@ -94,7 +94,7 @@ public class ModeloBD {
             st.setString(2, contrasena);
             result = st.executeQuery();
             while (result.next()) {
-                if (result.getString(1).equals(String.valueOf(usuario)) && result.getString(2).equals(contrasena)) {                    
+                if (result.getString(1).equals(String.valueOf(usuario)) && result.getString(2).equals(contrasena)) {
                     resultado = true;
                 }
             }
@@ -103,32 +103,9 @@ public class ModeloBD {
         }
         return resultado;
     }
-    
-    public boolean ValidarContra(String contrasena) {
-        boolean resultado = false;        
-        String campoDB;
-        ResultSet result;
 
-        try {
-            campoDB = "call verificarContrasena(?);";
-            CallableStatement st = connect.prepareCall(campoDB);
-            
-            st.setString(1, contrasena);
-            result = st.executeQuery();
-            while (result.next()) {
-                if (result.getString(1).equals(contrasena)) {                    
-                    resultado = true;
-                }
-            }
-        } catch (SQLException ex) {
-            System.err.println("Error de Validación en la BD");
-        }
-        return resultado;
-    }
-    
-    
     public int identificador(int usuario, String contrasena) {
-        int resultado = 0;        
+        int resultado = 0;
         String campoDB;
         ResultSet result;
 
@@ -138,8 +115,8 @@ public class ModeloBD {
             st.setInt(1, usuario);
             st.setString(2, contrasena);
             result = st.executeQuery();
-            while (result.next()) {                
-                    resultado = Integer.parseInt(result.getString(1));                
+            while (result.next()) {
+                resultado = Integer.parseInt(result.getString(1));
             }
         } catch (SQLException ex) {
             System.err.println("Error de Validación en la BD");
@@ -186,48 +163,26 @@ public class ModeloBD {
     public Connection getConnect() {
         return connect;
     }
-    
-    
+
     public String consultarSaldo(int usuario) {
-        String resultado = "0";        
+        String resultado = "0";
         String campoDB;
         ResultSet result;
 
         try {
             campoDB = "call consultarSaldo(?);";
             CallableStatement st = connect.prepareCall(campoDB);
-            st.setInt(1, usuario);            
+            st.setInt(1, usuario);
             result = st.executeQuery();
-            while (result.next()) {                
-                    resultado = result.getString(1);                
+            while (result.next()) {
+                resultado = result.getString(1);
             }
         } catch (SQLException ex) {
             System.err.println("Error de Validación en la BD");
         }
         return resultado;
     }
-    
-    public String actualizarSaldo(int usuario, int saldo) {
-        String resultado = "0";
-        String campoDB;
-        ResultSet result;
-        
-        try{
-            campoDB = "call actualizarSaldo(?,?);";
-            CallableStatement st = connect.prepareCall(campoDB);
-            st.setInt(1, usuario);   
-            st.setInt(2, saldo);
-            result = st.executeQuery();
-            while (result.next()) {                
-                    resultado = result.getString(1);                
-            }
-            
-        } catch (SQLException  ex){
-            System.err.println("Error de Validación en la BD");
-        }
-        return resultado;       
-    }
-    
+
     public ArrayList consultarHistorial(int usuario) {
         String campoDB;
         ResultSet result;
@@ -251,7 +206,28 @@ public class ModeloBD {
         }
         return datos;
     }
-    
-    
-    
+
+   
+    public boolean ValidarContra(String contrasena) {
+        boolean resultado = false;        
+        String campoDB;
+        ResultSet result;
+
+        try {
+            campoDB = "call verificarContrasena(?);";
+            CallableStatement st = connect.prepareCall(campoDB);
+            
+            st.setString(1, contrasena);
+            result = st.executeQuery();
+            while (result.next()) {
+                if (result.getString(1).equals(contrasena)) {                    
+                    resultado = true;
+                }
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error de Validación en la BD");
+        }
+        return resultado;
+    }
+
 }

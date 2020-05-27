@@ -676,7 +676,7 @@ public class ControlLogin implements ActionListener {
             v.pContra.setText(v.pContra.getText() + "Z");
         }
         
-        if (e.getSource() == v.buttonxok) {
+       if (e.getSource() == v.buttonxok) {
 
             try {
                 char[] ar = v.pContra.getPassword();
@@ -685,8 +685,8 @@ public class ControlLogin implements ActionListener {
                     builder.append(s);
                 }
 
-                String str = builder.toString();
-                String clave = seguridad.get_SHA_256_SecurePassword(str);
+                String str = builder.toString();                                
+                String clave = seguridad.get_SHA_256_SecurePassword(str);                
                 int identificacion = Integer.parseInt(v.tIdentificacion.getText());
                 baseDatos.conectar();
                 if (baseDatos.ValidarU(identificacion, clave)) {
@@ -694,7 +694,7 @@ public class ControlLogin implements ActionListener {
                     v.dispose();
                     int usuario = baseDatos.identificador(identificacion, clave);
                     vistamenuprincipal mainmenu = new vistamenuprincipal();
-                    controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu, baseDatos, usuario);
+                    controlmenuprincipal mainmenuc = new controlmenuprincipal(mainmenu,baseDatos,usuario);
                     System.out.println("conexion exitosa");
 
                 } else {
@@ -702,7 +702,7 @@ public class ControlLogin implements ActionListener {
                 }
                 baseDatos.cerrar();
             } catch (Exception exc) {
-                JOptionPane.showMessageDialog(null, "Manejo Errores Login", "Error", 2);
+                JOptionPane.showMessageDialog(null, "Error de Login", "Error", 2);
             }
         }
     }
