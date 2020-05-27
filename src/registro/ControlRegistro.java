@@ -112,6 +112,9 @@ public class ControlRegistro implements ActionListener {
                             ventana.JCombotipoIdentificacion.setSelectedIndex(0);
                             ventana.tCorreo.setText("");
                             ventana.pContra.setText("");
+                            JOptionPane.showMessageDialog(null, "Cuenta creada con éxito");
+                            ventanaR.dispose();
+                            llamarLogin();
                         } else {
                             JOptionPane.showMessageDialog(null, "Clave debe ser mayor a 4 caracteres");
                         }
@@ -136,5 +139,11 @@ public class ControlRegistro implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese Datos");
         }
+    }
+    
+    private void llamarLogin(){
+        VistaLogin v1= new VistaLogin();
+        ModeloBD m1= new ModeloBD();
+        ControlLogin c1= new ControlLogin(m1,v1);
     }
 }
