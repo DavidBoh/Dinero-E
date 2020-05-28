@@ -43,8 +43,8 @@ public class EmailVerification {
         
         
         //correo de origen
-        String myAccountEMail = "herrboh@gmail.com";
-        String password = "WDDDhP5LPrnAkgR";
+        String myAccountEMail = "knowit4llenglish@gmail.com";
+        String password = "m4u5*A.C-";
         
         Session session = Session.getInstance(properties, new Authenticator(){
            @Override
@@ -73,7 +73,7 @@ public class EmailVerification {
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
             message.setSubject("Email from java app");
             message.setText("Hello, \n this is a test");
-            String htmlCode = "<h1> Bienvenido a DineroE </h1> <br/> <h2><b> tu código es: </b></h2> " + mensajecodigo;
+            String htmlCode = "<h1> Bienvenido a DineroE </h1> <br/> <h2><b> tu codigo es: </b></h2> " + mensajecodigo;
             message.setContent(htmlCode,"text/html");
             
             return message;
