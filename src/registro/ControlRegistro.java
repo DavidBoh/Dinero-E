@@ -142,6 +142,7 @@ public class ControlRegistro implements ActionListener {
         if (!ventana.tNombre.getText().isEmpty()
                 && !ventana.tApellido.getText().isEmpty()
                 && !ventana.tIdentificacion.getText().isEmpty()
+                //&& Integer.parseInt(ventana.tIdentificacion.getText()) <= 5
                 && !ventana.tCorreo.getText().isEmpty()
                 && ventana.getPass().getPassword().length > 0) {
             try {
@@ -171,6 +172,12 @@ public class ControlRegistro implements ActionListener {
                             ventana.JCombotipoIdentificacion.setSelectedIndex(0);
                             ventana.tCorreo.setText("");
                             ventana.getPass().setText("");
+                            ventanaR.dispose();
+                            JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente");
+                            VistaLogin v1= new VistaLogin();
+                            ModeloBD m1= new ModeloBD();
+                            ControlLogin c1= new ControlLogin(m1,v1);
+                           
                         } else {
                             JOptionPane.showMessageDialog(null, "Clave debe ser mayor a 4 caracteres");
                         }
@@ -179,6 +186,7 @@ public class ControlRegistro implements ActionListener {
                             JOptionPane.showMessageDialog(null, "Usuario ya Existe");
                             ventana.tIdentificacion.setText("");
                         }
+                        
                         if (datos.confirmarCorreo(correo) == false) {
                             JOptionPane.showMessageDialog(null, "Correo ya Existe");
                             ventana.tCorreo.setText("");
@@ -193,7 +201,7 @@ public class ControlRegistro implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Error de Almacenamiento");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Ingrese Datos");
+            JOptionPane.showMessageDialog(null, "Ingrese Datos válidos");
         }
     }
 
