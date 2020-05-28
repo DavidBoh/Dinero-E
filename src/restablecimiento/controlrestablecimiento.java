@@ -10,7 +10,7 @@ import Modelo.limitadorCaracteres;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+import java.util.Random;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
 import loginapp.ControlLogin;
@@ -32,6 +32,8 @@ public class controlrestablecimiento implements ActionListener {
         v.cerrarventanax.addActionListener(this);
         v.regresarx.addActionListener(this);
         v.aceptar.addActionListener(this);
+        v.aceptarIngresaCodigo.addActionListener(this);
+        v.aceptarNuevaContra.addActionListener(this);
         limiteCaracteres(v);
         v.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -52,6 +54,14 @@ public class controlrestablecimiento implements ActionListener {
 
         if (e.getSource() == v.aceptar) {
             comprobacionUsuarioCorreo();
+        }
+        
+        if (e.getSource() == v.aceptarIngresaCodigo) {
+            
+        }
+        
+        if (e.getSource() == v.aceptarNuevaContra) {
+            
         }
     }
 
@@ -84,6 +94,49 @@ public class controlrestablecimiento implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(null, "Error de Comprobación");
         }
+    }
+    
+    private void enviarMail(){
+        
+    }
+    
+    private void generarCodigo(){
+        Random rand = new Random();
+        
+        String id = String.format("%04d", rand.nextInt(10000)); 
+    }
+    
+    private void activarIngresaCodigo(){
+        
+        v.fondo.setVisible(false);
+        v.aceptar.setVisible(false);
+        v.email.setVisible(false);
+        v.cedula.setVisible(false);
+        
+        v.fondoNuevaContra.setVisible(false);
+        v.nuevacontra.setVisible(false);
+        v.aceptarNuevaContra.setVisible(false);
+        
+        v.fondoIngresaCodigo.setVisible(true);
+        v.ingresacodigo.setVisible(true);
+        v.aceptarIngresaCodigo.setVisible(true);
+        
+    }
+    
+    private void activarRecuperaContra(){
+        
+        v.fondo.setVisible(false);
+        v.aceptar.setVisible(false);
+        v.email.setVisible(false);
+        v.cedula.setVisible(false);
+        
+        v.fondoIngresaCodigo.setVisible(false);
+        v.ingresacodigo.setVisible(false);
+        v.aceptarIngresaCodigo.setVisible(false);
+        
+        v.fondoNuevaContra.setVisible(true);
+        v.nuevacontra.setVisible(true);
+        v.aceptarNuevaContra.setVisible(true);
     }
 
 }

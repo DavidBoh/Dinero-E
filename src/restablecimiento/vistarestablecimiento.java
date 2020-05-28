@@ -80,11 +80,13 @@ public class vistarestablecimiento extends JFrame {
         ingresacodigo.setOpaque(false);
         ingresacodigo.setBorder(null);
         ingresacodigoT = new TextPrompt("Código enviado al mail", ingresacodigo); 
+        ingresacodigo.setVisible(false);
         
         nuevacontra = new JPasswordField(25);
         nuevacontra.setOpaque(false);
         nuevacontra.setBorder(null);
         nuevacontraT = new TextPrompt("Nueva contraseña", nuevacontra);
+        nuevacontra.setVisible(false);
         
         cerrarventanax = new JButton(new ImageIcon(getClass().getResource("/Imagenes/cerrar.png")));
         cerrarventanax.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/cerrar_g.png")));
