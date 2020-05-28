@@ -142,12 +142,14 @@ public class ControlRegistro implements ActionListener {
         if (!ventana.tNombre.getText().isEmpty()
                 && !ventana.tApellido.getText().isEmpty()
                 && !ventana.tIdentificacion.getText().isEmpty()
-                //&& Integer.parseInt(ventana.tIdentificacion.getText()) <= 5
+                
                 && !ventana.tCorreo.getText().isEmpty()
+                
                 && ventana.getPass().getPassword().length > 0) {
             try {
                 int identificacion = Integer.parseInt(ventana.tIdentificacion.getText());
                 String correo = ventana.tCorreo.getText();
+                
                 if (limitadores.get(3).comprobarCorreo()) {//Comprobación de expresiones regulares del correo
                     if (datos.confirmarU(identificacion)
                             && datos.confirmarCorreo(correo)) {

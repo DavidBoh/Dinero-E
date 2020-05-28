@@ -140,15 +140,12 @@ public class limitadorCaracteres implements KeyListener {
      * @param e Evento de pulsación
      */
     private void caracteresContrasena(KeyEvent e) {
-        if (e.getKeyChar() >= 32 && e.getKeyChar() <= 44
-                || e.getKeyChar() == 47
-                || e.getKeyChar() >= 58 && e.getKeyChar() <= 63
-                || e.getKeyChar() >= 91 && e.getKeyChar() <= 94
-                || e.getKeyChar() == 96
+       if (e.getKeyChar() >= 32 && e.getKeyChar() <= 47
+                || e.getKeyChar() >= 58 && e.getKeyChar() <= 64
+                || e.getKeyChar() >= 91 && e.getKeyChar() <= 96
                 || e.getKeyChar() >= 123 && e.getKeyChar() <= 255) {
             e.consume();
             JOptionPane.showMessageDialog(null, "Caracter Inválido");
-
         }
     }
 
