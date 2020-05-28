@@ -117,6 +117,7 @@ public class ControlRegistro implements ActionListener {
                             llamarLogin();
                         } else {
                             JOptionPane.showMessageDialog(null, "Clave debe ser mayor a 4 caracteres");
+                                
                         }
                     } else {
                         if (datos.confirmarU(identificacion) == false) {
@@ -127,6 +128,7 @@ public class ControlRegistro implements ActionListener {
                             JOptionPane.showMessageDialog(null, "Correo ya Existe");
                             ventana.tCorreo.setText("");
                         }
+                        
                     }//Fin Comprobacion campo identificacion
                 } else {
                     JOptionPane.showMessageDialog(null, "Correo Inválido");
