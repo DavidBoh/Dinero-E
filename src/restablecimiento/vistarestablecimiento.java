@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import text.TextPrompt;
 
@@ -23,13 +24,15 @@ public class vistarestablecimiento extends JFrame {
     
     public JButton cerrarventanax;
     public JButton regresarx;
-    public JButton aceptar;
+    public JButton aceptar, aceptarIngresaCodigo, aceptarNuevaContra;
     
-    public JLabel fondo; 
+    public JLabel fondo, fondoIngresaCodigo, fondoNuevaContra; 
     
-    public JTextField cedula, email;
+    public JTextField cedula, email, ingresacodigo;
     
-    private TextPrompt cedulaT, emailT;
+    public JPasswordField nuevacontra;
+    
+    private TextPrompt cedulaT, emailT, ingresacodigoT, nuevacontraT;
     
     public vistarestablecimiento(){
         
@@ -51,6 +54,18 @@ public class vistarestablecimiento extends JFrame {
         fondo.setIcon(new ImageIcon(getClass().getResource("/Imagenes/RESTABLECE.jpg")));
         fondo.setBackground(new Color(72, 181, 232));
         
+        fondoIngresaCodigo = new JLabel();
+        fondoIngresaCodigo.setOpaque(true);
+        fondoIngresaCodigo.setIcon(new ImageIcon(getClass().getResource("/Imagenes/INGRESACODIGO.jpg")));
+        fondoIngresaCodigo.setBackground(new Color(72, 181, 232));
+        fondoIngresaCodigo.setVisible(false);
+        
+        fondoNuevaContra = new JLabel();
+        fondoNuevaContra.setOpaque(true);
+        fondoNuevaContra.setIcon(new ImageIcon(getClass().getResource("/Imagenes/INGRESANUEVACONTRA.jpg")));
+        fondoNuevaContra.setBackground(new Color(72, 181, 232));
+        fondoNuevaContra.setVisible(false);
+        
         cedula = new JTextField(11);
         cedula.setOpaque(false);
         cedula.setBorder(null);
@@ -60,6 +75,16 @@ public class vistarestablecimiento extends JFrame {
         email.setOpaque(false);
         email.setBorder(null);
         emailT = new TextPrompt("Email", email); 
+        
+        ingresacodigo = new JTextField(25);
+        ingresacodigo.setOpaque(false);
+        ingresacodigo.setBorder(null);
+        ingresacodigoT = new TextPrompt("Código enviado al mail", ingresacodigo); 
+        
+        nuevacontra = new JPasswordField(25);
+        nuevacontra.setOpaque(false);
+        nuevacontra.setBorder(null);
+        nuevacontraT = new TextPrompt("Nueva contraseña", nuevacontra);
         
         cerrarventanax = new JButton(new ImageIcon(getClass().getResource("/Imagenes/cerrar.png")));
         cerrarventanax.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/cerrar_g.png")));
@@ -79,6 +104,19 @@ public class vistarestablecimiento extends JFrame {
         aceptar.setBorder(null);
         aceptar.setCursor(new Cursor(HAND_CURSOR));
         
+        aceptarIngresaCodigo = new JButton(new ImageIcon(getClass().getResource("/Imagenes/boton.png")));
+        aceptarIngresaCodigo.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/boton_g.png")));
+        aceptarIngresaCodigo.setContentAreaFilled(false);
+        aceptarIngresaCodigo.setBorder(null);
+        aceptarIngresaCodigo.setCursor(new Cursor(HAND_CURSOR));
+        aceptarIngresaCodigo.setVisible(false);
+        
+        aceptarNuevaContra = new JButton(new ImageIcon(getClass().getResource("/Imagenes/boton.png")));
+        aceptarNuevaContra.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/boton_g.png")));
+        aceptarNuevaContra.setContentAreaFilled(false);
+        aceptarNuevaContra.setBorder(null);
+        aceptarNuevaContra.setCursor(new Cursor(HAND_CURSOR));
+        aceptarNuevaContra.setVisible(false);
         
     }
     
@@ -87,17 +125,20 @@ public class vistarestablecimiento extends JFrame {
         setLayout(null);
         
         fondo.setBounds(0,0,310,546);
-        
+        fondoIngresaCodigo.setBounds(0,0,310,546);
+        fondoNuevaContra.setBounds(0,0,310,546);
         cedula.setBounds(80, 282, 150, 30);
         email.setBounds(80, 330, 150, 30);
-        
+        ingresacodigo.setBounds(80, 330, 150, 30);
+        nuevacontra.setBounds(80, 330, 150, 30);
         
         cerrarventanax.setBounds(270, 10, 25, 25);
         
         regresarx.setBounds(20,20,47,47);
         
         aceptar.setBounds(129, 465, 47, 47);
-        
+        aceptarIngresaCodigo.setBounds(129, 465, 47, 47);
+        aceptarNuevaContra.setBounds(129, 465, 47, 47);
         
         
     }
@@ -107,9 +148,16 @@ public class vistarestablecimiento extends JFrame {
         
         add(cedula);
         add(email);
+        add(ingresacodigo);
+        add(nuevacontra);
         add(cerrarventanax);
         add(regresarx);
         add(aceptar);
+        add(aceptarIngresaCodigo);
+        add(aceptarNuevaContra);
+        
+        add(fondoIngresaCodigo);
+        add(fondoNuevaContra);
         add(fondo);//siempre añadirlo al final
         
     }
