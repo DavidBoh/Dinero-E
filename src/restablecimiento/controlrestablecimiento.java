@@ -15,6 +15,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JOptionPane;
 import loginapp.ControlLogin;
 import loginapp.VistaLogin;
+import Modelo.EmailVerification;
 
 /**
  *
@@ -25,6 +26,8 @@ public class controlrestablecimiento implements ActionListener {
     private vistarestablecimiento v;
     private ModeloBD baseDatos;
     private final ArrayList<limitadorCaracteres> limitadores = new ArrayList<limitadorCaracteres>();
+    
+    public String guardarcodigo;
 
     public controlrestablecimiento(vistarestablecimiento vis, ModeloBD baseDatos) {
         this.v = vis;
@@ -57,7 +60,7 @@ public class controlrestablecimiento implements ActionListener {
         }
         
         if (e.getSource() == v.aceptarIngresaCodigo) {
-            
+            comparaCodigo();
         }
         
         if (e.getSource() == v.aceptarNuevaContra) {
@@ -80,7 +83,11 @@ public class controlrestablecimiento implements ActionListener {
                 String correo = v.email.getText();
                 if (!baseDatos.confirmarU(identificacion)
                         && !baseDatos.confirmarCorreo(correo)) {
+                    activarIngresaCodigo();
                     JOptionPane.showMessageDialog(null, "Se envió código de verificación");
+                    guardarcodigo = generarCodigo();
+                    enviarMail();
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "No se envió código de verificación");
                 }
@@ -96,14 +103,20 @@ public class controlrestablecimiento implements ActionListener {
         }
     }
     
-    private void enviarMail(){
-        
+    private void enviarMail() throws Exception{
+        EmailVerification.sendMail(v.email.getText(), guardarcodigo);
     }
     
-    private void generarCodigo(){
+    public String generarCodigo(){
         Random rand = new Random();
         
-        String id = String.format("%04d", rand.nextInt(10000)); 
+        return String.format("%04d", rand.nextInt(10000)); 
+    }
+    
+    private void comparaCodigo(){
+        if(Integer.parseInt(v.ingresacodigo.getText()) == Integer.parseInt(guardarcodigo)){
+            activarRecuperaContra();
+        }
     }
     
     private void activarIngresaCodigo(){
