@@ -88,8 +88,8 @@ public class vistarestablecimiento extends JFrame {
         
         fondo.setBounds(0,0,310,546);
         
-        cedula.setBounds(115, 282, 125, 30);
-        email.setBounds(135, 330, 180, 30);
+        cedula.setBounds(80, 282, 150, 30);
+        email.setBounds(80, 330, 150, 30);
         
         
         cerrarventanax.setBounds(270, 10, 25, 25);

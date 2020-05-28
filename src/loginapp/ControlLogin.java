@@ -256,7 +256,7 @@ public class ControlLogin implements ActionListener {
             v.dispose();
 
             vistarestablecimiento restab = new vistarestablecimiento();
-            controlrestablecimiento controlre = new controlrestablecimiento(restab);
+            controlrestablecimiento controlre = new controlrestablecimiento(restab,baseDatos);
         }
 
         if (e.getSource() == v.usuarionuevo) {
