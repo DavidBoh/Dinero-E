@@ -5,6 +5,7 @@
  */
 package restablecimiento;
 
+import Hash.Sha;
 import Modelo.ModeloBD;
 import Modelo.limitadorCaracteres;
 import java.awt.event.ActionEvent;
@@ -26,8 +27,10 @@ public class controlrestablecimiento implements ActionListener {
     private vistarestablecimiento v;
     private ModeloBD baseDatos;
     private final ArrayList<limitadorCaracteres> limitadores = new ArrayList<limitadorCaracteres>();
-    
-    public String guardarcodigo;
+    private final Sha seguridad = new Sha();
+    private String guardarcodigo;
+    private String correo;
+    private int identificador;
 
     public controlrestablecimiento(vistarestablecimiento vis, ModeloBD baseDatos) {
         this.v = vis;

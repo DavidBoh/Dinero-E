@@ -30,9 +30,9 @@ public class vistarestablecimiento extends JFrame {
     
     public JTextField cedula, email, ingresacodigo;
     
-    public JPasswordField nuevacontra;
+    public JPasswordField nuevacontra, verificaContra;
     
-    private TextPrompt cedulaT, emailT, ingresacodigoT, nuevacontraT;
+    private TextPrompt cedulaT, emailT, ingresacodigoT, nuevacontraT, verificaContraT;
     
     public vistarestablecimiento(){
         
@@ -70,23 +70,34 @@ public class vistarestablecimiento extends JFrame {
         cedula.setOpaque(false);
         cedula.setBorder(null);
         cedulaT = new TextPrompt("Identificación", cedula); 
+        cedula.setForeground(Color.WHITE);
         
         email = new JTextField(25);
         email.setOpaque(false);
         email.setBorder(null);
         emailT = new TextPrompt("Email", email); 
+        email.setForeground(Color.WHITE);
         
         ingresacodigo = new JTextField(25);
         ingresacodigo.setOpaque(false);
         ingresacodigo.setBorder(null);
-        ingresacodigoT = new TextPrompt("Código enviado al mail", ingresacodigo); 
+        ingresacodigoT = new TextPrompt("Código enviado al mail", ingresacodigo);         
         ingresacodigo.setVisible(false);
+        ingresacodigo.setForeground(Color.WHITE);
         
         nuevacontra = new JPasswordField(25);
         nuevacontra.setOpaque(false);
         nuevacontra.setBorder(null);
         nuevacontraT = new TextPrompt("Nueva contraseña", nuevacontra);
         nuevacontra.setVisible(false);
+        nuevacontra.setForeground(Color.WHITE);
+        
+        verificaContra = new JPasswordField(25);
+        verificaContra.setOpaque(false);
+        verificaContra.setBorder(null);
+        verificaContraT = new TextPrompt("Repetir contraseña", verificaContra);
+        verificaContra.setVisible(false);
+        verificaContra.setForeground(Color.WHITE);
         
         cerrarventanax = new JButton(new ImageIcon(getClass().getResource("/Imagenes/cerrar.png")));
         cerrarventanax.setRolloverIcon(new ImageIcon(getClass().getResource("/Imagenes/cerrar_g.png")));
@@ -126,13 +137,16 @@ public class vistarestablecimiento extends JFrame {
         
         setLayout(null);
         
+        setLayout(null);
+        
         fondo.setBounds(0,0,310,546);
         fondoIngresaCodigo.setBounds(0,0,310,546);
         fondoNuevaContra.setBounds(0,0,310,546);
         cedula.setBounds(80, 282, 150, 30);
         email.setBounds(80, 330, 150, 30);
-        ingresacodigo.setBounds(80, 330, 150, 30);
-        nuevacontra.setBounds(80, 330, 150, 30);
+        ingresacodigo.setBounds(80, 283, 150, 30);
+        nuevacontra.setBounds(80, 283, 150, 30);
+        verificaContra.setBounds(80, 345, 150, 30);
         
         cerrarventanax.setBounds(270, 10, 25, 25);
         
@@ -146,12 +160,12 @@ public class vistarestablecimiento extends JFrame {
     }
     
     private void agregar(){
-        
-        
+         
         add(cedula);
         add(email);
         add(ingresacodigo);
         add(nuevacontra);
+        add(verificaContra);
         add(cerrarventanax);
         add(regresarx);
         add(aceptar);
@@ -161,7 +175,6 @@ public class vistarestablecimiento extends JFrame {
         add(fondoIngresaCodigo);
         add(fondoNuevaContra);
         add(fondo);//siempre añadirlo al final
-        
     }
     
 }

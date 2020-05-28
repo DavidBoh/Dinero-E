@@ -251,4 +251,41 @@ public class ModeloBD {
         return resultado;       
     }
     
+    public int identificadorCorreo(int usuario, String correo) {
+        int resultado = 0;
+        String campoDB;
+        ResultSet result;
+
+        try {
+            campoDB = "call identificadorCorreo(?,?);";
+            CallableStatement st = connect.prepareCall(campoDB);
+            st.setInt(1, usuario);
+            st.setString(2, correo);
+            result = st.executeQuery();
+            while (result.next()) {
+                resultado = Integer.parseInt(result.getString(1));
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error de Validación en la BD");
+        }
+        return resultado;
+    }
+
+    public boolean actualizarContrasena(int usuario, String nuevaContra) {
+        boolean resultado = false;
+        String campoDB;
+        ResultSet result;
+        try {
+            campoDB = "call actualizarContrasena(?,?);";
+            CallableStatement st = connect.prepareCall(campoDB);
+            st.setInt(1, usuario);
+            st.setString(2, nuevaContra);
+            result = st.executeQuery();            
+            resultado = true;
+        } catch (SQLException ex) {
+            System.err.println("Error de Actualización de Contraseña");            
+        }
+        return resultado;
+    }
+    
 }
