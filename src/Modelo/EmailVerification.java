@@ -71,9 +71,10 @@ public class EmailVerification {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(myAccountEmail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            message.setSubject("Email from java app");
+            message.setSubject("Recuperación contraseña DineroE");
             message.setText("Hello, \n this is a test");
-            String htmlCode = "<h1> Bienvenido a DineroE </h1> <br/> <h2><b> tu codigo es: </b></h2> " + mensajecodigo;
+            message.setFrom(new InternetAddress("dineroe@soporte", "DineroE"));
+            String htmlCode = "<h1> Recuperacion cuenta DineroE </h1> <br/> <h2><b> Tu codigo es: </b></h2> " + mensajecodigo;
             message.setContent(htmlCode,"text/html");
             
             return message;

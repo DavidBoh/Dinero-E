@@ -67,42 +67,97 @@ public class controlrestablecimiento implements ActionListener {
         }
         
         if (e.getSource() == v.aceptarNuevaContra) {
-            
+            contraseñas();
         }
     }
 
     private void limiteCaracteres(vistarestablecimiento vt) {
         limitadores.add(new limitadorCaracteres(vt.cedula, 10, 2));
         limitadores.add(new limitadorCaracteres(vt.email, 50, 3));
+        limitadores.add(new limitadorCaracteres(vt.ingresacodigo, 4, 2));
+        limitadores.add(new limitadorCaracteres(vt.nuevacontra, 15, 4));
+        limitadores.add(new limitadorCaracteres(vt.verificaContra, 15, 4));
     }
 
     private void comprobacionUsuarioCorreo() {
-        if (!v.cedula.getText().isEmpty()
+         if (!v.cedula.getText().isEmpty()
                 && !v.email.getText().isEmpty()
                 && limitadores.get(1).comprobarCorreo()) {
             baseDatos.conectar();
             try {
                 int identificacion = Integer.parseInt(v.cedula.getText());
-                String correo = v.email.getText();
+                String correoV = v.email.getText();
                 if (!baseDatos.confirmarU(identificacion)
-                        && !baseDatos.confirmarCorreo(correo)) {
+                        && !baseDatos.confirmarCorreo(correoV)) {
+                    identificador = identificacion;
+                    correo = correoV;                    
                     activarIngresaCodigo();
-                    JOptionPane.showMessageDialog(null, "Se envió código de verificación");
                     guardarcodigo = generarCodigo();
                     enviarMail();
-                    
+                    JOptionPane.showMessageDialog(null, "Se envió código de verificación");
                 } else {
                     JOptionPane.showMessageDialog(null, "No se envió código de verificación");
+                    v.dispose();
+                    vistarestablecimiento restab = new vistarestablecimiento();
+                    controlrestablecimiento controlre = new controlrestablecimiento(restab,baseDatos);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error de Comprobación");
+                v.dispose();
+                vistarestablecimiento restab = new vistarestablecimiento();
+                controlrestablecimiento controlre = new controlrestablecimiento(restab,baseDatos);
             }
             if (baseDatos.getConnect() != null) {
-                
                 baseDatos.cerrar();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Error de Comprobación");
+        }
+    }
+    
+     private void contraseñas() {
+        try {
+            if (v.verificaContra.getPassword().length > 0
+                    && v.nuevacontra.getPassword().length > 0) {
+                if (v.verificaContra.getPassword().length > 4
+                        && v.nuevacontra.getPassword().length > 4) {
+                    char[] ar = v.nuevacontra.getPassword();
+                    StringBuilder builder = new StringBuilder();
+                    for (char s : ar) {
+                        builder.append(s);
+                    }
+                    char[] ar2 = v.verificaContra.getPassword();
+                    StringBuilder builder2 = new StringBuilder();
+                    for (char s : ar2) {
+                        builder2.append(s);
+                    }
+                    String contrasena = builder.toString();
+                    String vContrasena = builder2.toString();
+                    if (vContrasena.equals(contrasena)) {
+                        String clave = seguridad.get_SHA_256_SecurePassword(contrasena);
+                        baseDatos.conectar();
+                        int usuario = baseDatos.identificadorCorreo(identificador, correo);
+                        if (baseDatos.actualizarContrasena(usuario, clave)) {
+                            JOptionPane.showMessageDialog(null, "Contraseña Actualizada");
+                            v.dispose();
+                            VistaLogin v1 = new VistaLogin();
+                            ModeloBD m1 = new ModeloBD();
+                            ControlLogin c1 = new ControlLogin(m1, v1);
+                        }
+                        if (baseDatos.getConnect() != null) {
+                            baseDatos.cerrar();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Las Contraseñas No Concuerdan");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Clave debe ser mayor a 4 caracteres");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Existe un campo vacio");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error comparando contraseñas");
         }
     }
     
@@ -117,8 +172,18 @@ public class controlrestablecimiento implements ActionListener {
     }
     
     private void comparaCodigo(){
-        if(Integer.parseInt(v.ingresacodigo.getText()) == Integer.parseInt(guardarcodigo)){
-            activarRecuperaContra();
+        try {
+            if (!v.ingresacodigo.getText().isEmpty()) {
+                if (Integer.parseInt(v.ingresacodigo.getText()) == Integer.parseInt(guardarcodigo)) {
+                    activarRecuperaContra();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Código Incorrecto");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese su Código");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error de Comprobación de Token");
         }
     }
     
@@ -145,13 +210,14 @@ public class controlrestablecimiento implements ActionListener {
         v.aceptar.setVisible(false);
         v.email.setVisible(false);
         v.cedula.setVisible(false);
-        
+
         v.fondoIngresaCodigo.setVisible(false);
         v.ingresacodigo.setVisible(false);
         v.aceptarIngresaCodigo.setVisible(false);
-        
+
         v.fondoNuevaContra.setVisible(true);
         v.nuevacontra.setVisible(true);
+        v.verificaContra.setVisible(true);
         v.aceptarNuevaContra.setVisible(true);
     }
 
