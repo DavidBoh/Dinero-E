@@ -44,7 +44,7 @@ public class EmailVerification {
         
         //correo de origen
         String myAccountEMail = "knowit4llenglish@gmail.com";
-        String password = "m4u5*A.C-";
+        String password = "";
         
         Session session = Session.getInstance(properties, new Authenticator(){
            @Override
